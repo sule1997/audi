@@ -2922,6 +2922,8 @@ document.head.appendChild(style);
 
     })();
 
+    window.getSongs = getSongs;
+
     const DOMStrings = (()=>{
         
 

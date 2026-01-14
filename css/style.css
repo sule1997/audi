@@ -109,41 +109,83 @@ font-family: ui-rounded;
   width: 100%;
   height: 3px;
   background-image: linear-gradient(to left, #778000,#d31b1b, #778000); }
-
+  
+  
+  
 .favorite-filter-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-  display: flex;
+  --bg: #ffffff;
+  --bg-active: #ffe9a8;
+  --accent: #f5b301;
+  --text: #1f2933;
+
+  appearance: none;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #48515c;
+  color: var(--text);
+
+  min-width: 52px;
+  min-height: 52px;
+  padding: 0.75rem;
+
+  border-radius: 14px;
+  display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  font-size: 0.85em;
+  justify-content: center;
+  gap: 0.5rem;
+
+  font-size: 0.9rem;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-  min-width: 48px;
-  min-height: 48px;
+
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
-.favorite-filter-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
-}
-
-.favorite-filter-btn:active {
-  transform: translateY(0);
-}
-
+/* Icon focus for mobile */
 .favorite-filter-btn .material-icons {
-  font-size: 1.2em;
+  font-size: 1.4rem;
+  color: var(--accent);
 }
 
-.favorite-filter-btn.active {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+/* Hide text on small screens to keep intent clear */
+.favorite-filter-btn .favorite-text {
+  display: none;
 }
+
+/* Press feedback */
+.favorite-filter-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* Active (favorites on) */
+.favorite-filter-btn.active,
+.favorite-filter-btn[aria-pressed="true"] {
+  background: var(--bg-active);
+  border-color: rgba(245,179,1,0.5);
+}
+
+.favorite-filter-btn.active .material-icons {
+  color: #d97706;
+}
+
+/* Keyboard focus */
+.favorite-filter-btn:focus-visible {
+  outline: 2px solid #f5b301;
+  outline-offset: 2px;
+}
+
+/* Tablet and up: show text */
+@media (min-width: 640px) {
+  .favorite-filter-btn {
+    padding: 1.45rem 1rem;
+    justify-content: flex-start;
+  }
+
+  .favorite-filter-btn .favorite-text {
+    display: inline;
+  }
+}
+
 
 .audio-favorite-toggle .material-icons {
   transition: all 0.3s ease;
@@ -898,30 +940,30 @@ audio-prev-btn,
 
 
 /* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
 .loader {
-  width: 50px;
+  width: 40px;
   aspect-ratio: 1;
-  --c:no-repeat radial-gradient(farthest-side,#514b82 92%,#0000);
-  background: 
-    var(--c) 50%  0, 
-    var(--c) 50%  100%, 
-    var(--c) 100% 50%, 
-    var(--c) 0    50%;
-  background-size: 10px 10px;
-  animation: l18 1s infinite;
   position: relative;
 }
-.loader::before {    
-  content:"";
+.loader:before {
+  content: '';
   position: absolute;
-  inset:0;
-  margin: 3px;
-  background: repeating-conic-gradient(#0000 0 35deg,#514b82 0 90deg);
-  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
+  inset: 0;
   border-radius: 50%;
+  --c:#0000, #f03355 1deg 120deg,#0000 121deg;
+  background:
+    conic-gradient(from 0deg,  var(--c)) top right,
+    conic-gradient(from 120deg,var(--c)) bottom,
+    conic-gradient(from 240deg,var(--c)) top left;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  animation: l25 2s infinite cubic-bezier(0.3,1,0,1);
 }
-@keyframes l18 { 
-  100%{transform: rotate(.5turn)}
+@keyframes l25 {
+   33%  {inset:-8px;transform: rotate(0deg)}
+   66%  {inset:-8px;transform: rotate(180deg)}
+   100% {inset:0   ;transform: rotate(180deg)}
 }
 
 /* Devices optimazation start here */

@@ -588,56 +588,56 @@ window.onload = () =>{
 					{
  name : 'Yaa Rasullah',
  artist : '',
- image :'default-image.webp',
+ image :'Yaa Rasullah.jpg',
  songUrl :'Yaa Rasullah.mp3',  
  duration :'04:51' 
                 },
 					{
  name : 'ya taiba',
  artist : '',
- image :'default-image.webp',
+ image :'ya taiba.jpg',
  songUrl :'ya-taiba.mp3',  
  duration :'04:35' 
                 },
 					{
  name : 'Al Hijrah',
  artist : '',
- image :'default-image.webp',
+ image :'Al Hijrah.jpg',
  songUrl :'Al Hijrah.mp3',  
  duration :'04:34' 
                 },
 					{
  name : 'Assalamualaik ya wazir',
  artist : '',
- image :'default-image.webp',
+ image :'Assalamualaik ya wazir.jpg',
  songUrl :'assalamualaik-ya-wazir.mp3',  
  duration :'04:26' 
                 },
 					{
  name : 'Wahdana',
  artist : '',
- image :'default-image.webp',
+ image :'Wahdana.jpg',
  songUrl :'Wahdana - Wafiq Azizah.mp3',  
  duration :'04:11' 
                 },
 					{
  name : 'Wanaofunga mazoea',
  artist : '',
- image :'default-image.webp',
+ image :'Wanaofunga mazoea.jpg',
  songUrl :'WANOFUNGAMAZOEAUKHTYTHUREya.mp3',  
  duration :'03:54' 
                 },
 				   {
                     name: "Mama huyo",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Mama huyo.jpg",
                     songUrl: "Mama huyo.mp3",
                     duration: "10:27"
                 },
 				   {
                     name: "Yaarabbi Swaali",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Yaarabbi Swaali.jpg",
                     songUrl: "Yaarabbi Swaali.mp3",
                     duration: "06:36"
                 },
@@ -645,7 +645,7 @@ window.onload = () =>{
 				   {
                     name: "Kijicho",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Kijicho.jpg",
                     songUrl: "Kijicho.mp3",
                     duration: "07:30"
                 },
@@ -653,7 +653,7 @@ window.onload = () =>{
 				   {
                     name: "Sifa za kuoa",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Sifa za kuoa.jpg",
                     songUrl: "Sifa za kuoa.mp3",
                     duration: "07:43"
                 },
@@ -661,7 +661,7 @@ window.onload = () =>{
 				   {
                     name: "Twamsifu",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Twamsifu.jpg",
                     songUrl: "Twamsifu.mp3",
                     duration: "07:52"
                 },
@@ -669,7 +669,7 @@ window.onload = () =>{
 				   {
                     name: "Binniyat",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Binniyat.jpg",
                     songUrl: "Binniyat.mp3",
                     duration: "09:26"
                 },
@@ -677,7 +677,7 @@ window.onload = () =>{
 				   {
                     name: "Heshima kwa mume",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Heshima kwa mume.jpg",
                     songUrl: "Heshima kwa mume.mp3",
                     duration: "06:58"
                 },
@@ -685,7 +685,7 @@ window.onload = () =>{
 				   {
                     name: "Zimetimu zao njozi",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Zimetimu zao njozi.jpg",
                     songUrl: "Zimetimu zao njozi.mp3",
                     duration: "07:09"
                 },
@@ -693,7 +693,7 @@ window.onload = () =>{
 				   {
                     name: "Vigelegele",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Vigelegele.jpg",
                     songUrl: "Vigelegele.mp3",
                     duration: "08:16"
                 },
@@ -701,7 +701,7 @@ window.onload = () =>{
 				   {
                     name: "Mja umeiaga dunia",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Mja umeiaga dunia.jpg",
                     songUrl: "Mja umeiaga dunia.mp3",
                     duration: ""
                 },
@@ -709,7 +709,7 @@ window.onload = () =>{
 				   {
                     name: "Lengo la kuletwa",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Lengo la kuletwa.jpg",
                     songUrl: "Lengo la kuletwa duniani.mp3",
                     duration: "05:04"
                 },
@@ -717,7 +717,7 @@ window.onload = () =>{
 				   {
                     name: "Da asha kwaheri",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Da asha kwaheri.jpg",
                     songUrl: "Da asha kwaheri.mp3",
                     duration: "11:35"
                 },
@@ -725,7 +725,7 @@ window.onload = () =>{
 				   {
                     name: "Ubaya",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Ubaya.jpg",
                     songUrl: "Ubaya.mp3",
                     duration: "09:42"
                 },
@@ -733,7 +733,7 @@ window.onload = () =>{
 				   {
                     name: "Twaanza salamu",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Twaanza salamu.jpg",
                     songUrl: "Twaanza salamu.mp3",
                     duration: "09:19"
                 },
@@ -741,7 +741,7 @@ window.onload = () =>{
 				   {
                     name: "Msafara mwema",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Msafara mwema.jpg",
                     songUrl: "Msafara mwema.mp3",
                     duration: "13:22"
                 },
@@ -749,7 +749,7 @@ window.onload = () =>{
 				   {
                     name: "Dhuluma",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Dhuluma.jpg",
                     songUrl: "Dhuluma.mp3",
                     duration: "14:54"
                 },
@@ -759,7 +759,7 @@ window.onload = () =>{
 				   {
                     name: "Wake wa Mtume",
                     artist: "",
-                    image: "default-image.webp",
+                    image: "Wake wa Mtume.jpg",
                     songUrl: "Wake wa Mtume.mp3",
                     duration: "05:34"
                 },

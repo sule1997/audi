@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Harusi Haisusiwi",
+        "artist": "",
+        "image": "default-image.webp",
+        "songUrl": "Harusi Haisusiwi.mp3",
+        "duration": "04:09"
+    },
+    {
+        "name": "Subhanallah",
+        "artist": "",
+        "image": "default-image.webp",
+        "songUrl": "Subhanallah.mp3",
+        "duration": "03:45"
+    },
+    {
+        "name": "Ramadan Mubarak",
+        "artist": "",
+        "image": "default-image.webp",
+        "songUrl": "Ramadan-Mubarak.mp3",
+        "duration": "04:22"
+    },
+    {
+        "name": "Alhamdulillah",
+        "artist": "",
+        "image": "default-image.webp",
+        "songUrl": "Alhamdulillah.mp3",
+        "duration": "03:58"
+    },
+    {
+        "name": "Ya Nabi Salam",
+        "artist": "",
+        "image": "default-image.webp",
+        "songUrl": "Ya-Nabi-Salam.mp3",
+        "duration": "04:15"
+    }
+]

@@ -497,57 +497,184 @@ controlItems.forEach(item => {
 
 
 <script>
-//search from second list
-    // Artist search functionality
-    if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            const artistElements = document.querySelectorAll('.music-hor__item');
+// External songs management
+class ExternalSongsManager {
+    static externalSongs = [];
+    static isLoaded = false;
+    static isLoading = false;
 
-            artistElements.forEach(item => {
-                const artistName = item.querySelector('.music-artist-name').textContent.toLowerCase();
-                if (artistName.includes(query)) {
-                    item.style.display = ''; // Show matching item
-                } else {
-                    item.style.display = 'none'; // Hide non-matching item
+    static async loadExternalSongs() {
+        if (this.isLoaded || this.isLoading) return;
+
+        this.isLoading = true;
+        try {
+            const response = await fetch('https://storage.dirajumla-publishers.com/kaswida/moresongs.json');
+            if (response.ok) {
+                this.externalSongs = await response.json();
+                this.isLoaded = true;
+                console.log('External songs loaded:', this.externalSongs.length);
+            } else {
+                console.warn('Failed to load external songs');
+            }
+        } catch (error) {
+            console.error('Error loading external songs:', error);
+        } finally {
+            this.isLoading = false;
+        }
+    }
+
+    static searchExternalSongs(query) {
+        return this.externalSongs.filter(song => {
+            const name = (song.name || '').toLowerCase();
+            const artist = (song.artist || '').toLowerCase();
+            return name.includes(query) || artist.includes(query);
+        });
+    }
+
+    static renderExternalSongs(songs) {
+        const horList = document.querySelector('.music-hor__list');
+        if (!horList) return;
+
+        // Remove previous external songs
+        document.querySelectorAll('.music-hor__item[data-external="true"]').forEach(item => {
+            item.remove();
+        });
+
+        // Add matching external songs
+        songs.forEach((song, index) => {
+            const content = `<div class="music-hor__item" data-external="true" data-external-index="${index}">
+                                <div class="music-hor__item-inner">
+                                    <img src="img/${song.image}" class="music-hor__img">
+                                    <h3 class="music-artist-name">${song.name}</h3>
+                                </div>
+                                <div class="music-hor__item-inner">
+                                    <p class="music-hor__music-duration">${song.duration}</p>
+                                </div>
+                            </div>`;
+            horList.insertAdjacentHTML('beforeend', content);
+        });
+
+        // Reattach click listeners for external songs
+        this.attachExternalSongListeners();
+    }
+
+    static attachExternalSongListeners() {
+        const externalItems = document.querySelectorAll('.music-hor__item[data-external="true"]');
+        externalItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-external-index'));
+                const song = ExternalSongsManager.externalSongs[index];
+
+                // Play the external song
+                const audioElement = document.getElementById('audio');
+                if (audioElement && song) {
+                    audioElement.src = `play/${song.songUrl}`;
+
+                    // Update UI
+                    document.querySelectorAll('.audio-image').forEach(img => {
+                        img.src = `img/${song.image}`;
+                    });
+                    document.querySelectorAll('.audio-name').forEach(name => {
+                        name.textContent = song.name;
+                    });
+                    const singerName = document.querySelector('.audio-singer-name');
+                    if (singerName) {
+                        singerName.textContent = song.artist || song.name;
+                    }
+
+                    audioElement.play();
+
+                    // Update play button icon
+                    document.querySelectorAll('.audio-play-pause-btn .material-icons').forEach(icon => {
+                        icon.textContent = 'pause_circle_filled';
+                    });
+
+                    // Open fullscreen player if hidden
+                    const fullscreen = document.getElementById('audio-player-fullscreen');
+                    if (fullscreen && fullscreen.classList.contains('hidden')) {
+                        fullscreen.classList.remove('hidden');
+                    }
                 }
             });
         });
     }
+
+    static clearExternalSongs() {
+        document.querySelectorAll('.music-hor__item[data-external="true"]').forEach(item => {
+            item.remove();
+        });
+    }
+}
+
+// Load external songs on page load
+document.addEventListener('DOMContentLoaded', () => {
+    ExternalSongsManager.loadExternalSongs();
+});
 </script>
-
-
 
 <script>
-//search from const songs
+// Enhanced unified search functionality
+document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
 
-    if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            const musicItems = document.querySelectorAll('.music-con__item');
+    if (!searchInput) return;
 
-            musicItems.forEach(item => {
-                const artistName = item.querySelector('.music-artist-name')
-                    ? item.querySelector('.music-artist-name').textContent.toLowerCase()
-                    : '';
+    searchInput.addEventListener('input', async () => {
+        const query = searchInput.value.toLowerCase().trim();
 
-                const headingText = item.querySelector('.heading-3')
-                    ? item.querySelector('.heading-3').textContent.toLowerCase()
-                    : '';
+        // Search in music-con__item (vertical scroll list)
+        const musicItems = document.querySelectorAll('.music-con__item');
+        musicItems.forEach(item => {
+            const artistName = item.querySelector('.music-artist-name')
+                ? item.querySelector('.music-artist-name').textContent.toLowerCase()
+                : '';
 
-                // Check if query matches artist name or heading text
-                if (artistName.includes(query) || headingText.includes(query)) {
-                    item.style.display = ''; // Show matching item
-                } else {
-                    item.style.display = 'none'; // Hide non-matching item
-                }
-            });
+            const headingText = item.querySelector('.heading-3')
+                ? item.querySelector('.heading-3').textContent.toLowerCase()
+                : '';
+
+            if (artistName.includes(query) || headingText.includes(query)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
         });
-    }
+
+        // Search in music-hor__item (horizontal list - local songs only)
+        const horItems = document.querySelectorAll('.music-hor__item:not([data-external="true"])');
+        horItems.forEach(item => {
+            const artistName = item.querySelector('.music-artist-name')
+                ? item.querySelector('.music-artist-name').textContent.toLowerCase()
+                : '';
+
+            if (artistName.includes(query)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        // Handle external songs
+        if (query) {
+            // Search external songs if loaded
+            if (ExternalSongsManager.isLoaded) {
+                const matchingSongs = ExternalSongsManager.searchExternalSongs(query);
+                ExternalSongsManager.renderExternalSongs(matchingSongs);
+            } else if (!ExternalSongsManager.isLoading) {
+                // Load external songs if not already loading
+                await ExternalSongsManager.loadExternalSongs();
+                const matchingSongs = ExternalSongsManager.searchExternalSongs(query);
+                ExternalSongsManager.renderExternalSongs(matchingSongs);
+            }
+        } else {
+            // Clear search - show all local songs and hide external songs
+            musicItems.forEach(item => item.style.display = '');
+            horItems.forEach(item => item.style.display = '');
+            ExternalSongsManager.clearExternalSongs();
+        }
+    });
+});
 </script>
-
-
 
 <script>
 

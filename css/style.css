@@ -1119,7 +1119,22 @@ audio-prev-btn,
 .music-hor__item{
  Background-color: #000000;
      transform-style: preserve-3d;
-    
+
+}
+
+.music-hor__item[data-external="true"] {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
